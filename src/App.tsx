@@ -1,14 +1,14 @@
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
 
-import dvm from "/imgs/Rahul.png";
-import adp from "/imgs/Pranav.png";
-import pcr from "/imgs/Ishita.png";
-import controls from "/imgs/Ayushman.png";
-import recnacc from "/imgs/Arshita.png";
-import spons from "/imgs/Dhruv.png";
-import gensec from "/imgs/Aditya.png";
-import prez from "/imgs/Sajal.png";
+import dvm from "./assets/images/stuccan/Rahul.png"
+import adp from "./assets/images/stuccan/Pranav.png";
+import pcr from "./assets/images/stuccan/Ishita.png";
+import controls from "./assets/images/stuccan/Ayushmaan.png";
+import recnacc from "./assets/images/stuccan/Arshita.png";
+import spons from "./assets/images/stuccan/Dhruv.png";
+import gensec from "./assets/images/stuccan/Aditya.png";
+import prez from "./assets/images/stuccan/Sajal.png";
 import Preloader from "./preloader/Preloader";
 import oasis from "/oasislogo.png";
 import DoorTransition from "./page-transition/DoorTransition";
