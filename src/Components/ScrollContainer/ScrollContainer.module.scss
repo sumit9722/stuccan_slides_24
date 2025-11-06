@@ -1,10 +1,22 @@
 .scrollContainer {
     display: flex;
     height: 100%;
+    align-items: center;
 
     .scroll {
-        width: 10%;
-        background-size: cover;
+        background-size: contain;
         height: 100%;
+        z-index: 100;
+        background-repeat: no-repeat;
+        aspect-ratio: 0.168;
+    }
+
+    .scrollPaper {
+        z-index: 10;
+        background-size: cover;
+        flex: 1;
+        height: 75%;
+        border: 2px solid #EEB458;
+        transform: translateX(-1rem) translateY(-5px);
     }
 }

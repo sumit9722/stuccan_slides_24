@@ -14,7 +14,8 @@ export default function ScrollContainer({ stucca, className = '' }: ScrollContai
         <div className={className}>
             <div className={styles.scrollContainer}>
                 <div className={styles.scroll} style={{backgroundImage: `url(${scrollImg})`}} />
-                <div className={styles.scrollPaper}></div>
+                <div className={styles.scrollPaper} style={{backgroundImage: `url(${scrollTexture})`}}>
+                </div>
             </div>
         </div>
     )
