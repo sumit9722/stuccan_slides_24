@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
 
-import dvm from "./assets/images/stuccan/Rahul.png"
+import dvm from "./assets/images/stuccan/Rahul.png";
 import adp from "./assets/images/stuccan/Pranav.png";
 import pcr from "./assets/images/stuccan/Ishita.png";
 import controls from "./assets/images/stuccan/Ayushmaan.png";
@@ -60,6 +60,9 @@ export default function App() {
   const [currIndex, setCurrIndex] = useState(0);
   const [checker, setChecker] = useState(false);
   const [activeDoor, setActiveDoor] = useState(false);
+  const [phase, setPhase] = useState<
+    "idle" | "closing" | "waiting" | "opening"
+  >("closing");
 
   const currIndexRef = useRef(currIndex);
   const checkerRef = useRef(false);
@@ -135,12 +138,13 @@ export default function App() {
         <>
           {activeDoor && (
             <DoorTransition
-              phase="closing"
+              phase={phase}
               onClosed={() => {
+                setPhase("opening");
                 setCurrIndex(currIndexRef.current);
               }}
               onOpened={() => {
-                // setCurrIndex(currIndexRef.current);
+                setPhase("closing");
                 setActiveDoor(false);
               }}
             />
