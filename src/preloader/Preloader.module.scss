@@ -1,0 +1,70 @@
+$dot-size: calc(var(--loader-size) / 4);
+$gap: calc($dot-size * 0.6);
+$duration: 0.9s;
+
+.loaderWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #4d86a4;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+  width: 100%;
+  height: 100%;
+}
+
+.dot {
+  width: $dot-size;
+  height: $dot-size;
+  border-radius: 50%;
+  background-color: var(--loader-color);
+  transform: translateY(0);
+  animation: bounce $duration ease-in-out infinite;
+}
+
+// stagger each dot using nth-child
+.dot:nth-child(1) {
+  animation-delay: calc(-1 * $duration * 0.16);
+}
+.dot:nth-child(2) {
+  animation-delay: calc(-1 * $duration * 0);
+}
+.dot:nth-child(3) {
+  animation-delay: calc($duration * 0.16);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(calc(-1 * $dot-size * 0.45));
+    opacity: 1;
+  }
+}
+
+// Accessibility: reduce motion
+@media (prefers-reduced-motion: reduce) {
+  .dot {
+    animation: none;
+    transform: scale(0.95);
+  }
+}
+
+// Small helper to make the loader full-width centered
+.fullCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
