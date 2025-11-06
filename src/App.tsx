@@ -12,9 +12,17 @@ import prez from "./assets/images/stuccan/Sajal.png";
 import Preloader from "./preloader/Preloader";
 import oasis from "/oasislogo.png";
 import DoorTransition from "./page-transition/DoorTransition";
+import ScrollContainer from "./Components/ScrollContainer/ScrollContainer";
+import bg from "./assets/images/bg.png"
+
+export interface Stucca {
+  name: string,
+  depName: string,
+  imgLink: string
+}
 
 export default function App() {
-  const listOfStucaa = [
+  const listOfStucaa: Stucca[] = [
     {
       name: "Rahul Gupta",
       depName: "Department of Visual Media",
@@ -129,7 +137,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div className="app" style={{backgroundImage: `url(${bg})`}}>
       {!checker ? (
         <div className="preloader-container">
           <Preloader size={64} color="#ffffff" ariaLabel="Loading content" />
@@ -153,29 +161,12 @@ export default function App() {
             <div className="logo">
               <img src={oasis} alt="osaislogo" className="oasislogo" />
             </div>
-            <div className="names">
-              {listOfStucaa.map((stucan, index) => (
-                <div
-                  key={index}
-                  className={
-                    currIndex === index + 1
-                      ? "namesection active"
-                      : "namesection"
-                  }
-                >
-                  <div className="imgcontainer">
-                    <img src={stucan.imgLink} alt={stucan.name} />
-                  </div>
-                  <div className="nametext">
-                    <h2>{stucan.name}</h2>
-                    <p>{stucan.depName}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ScrollContainer
+              stucca={listOfStucaa[currIndex]}
+              className="scrollCont" />
           </div>
         </>
       )}
-    </>
+    </div>
   );
 }
