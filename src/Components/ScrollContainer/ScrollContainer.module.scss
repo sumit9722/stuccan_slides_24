@@ -1,0 +1,10 @@
+.scrollContainer {
+    display: flex;
+    height: 100%;
+
+    .scroll {
+        width: 10%;
+        background-size: cover;
+        height: 100%;
+    }
+}
