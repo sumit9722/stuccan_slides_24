@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import styles from "./style.module.scss";
-import Door1Image from "/imgs/doors/Door1.png";
-import Door2Image from "/imgs/doors/Door2.png";
-import Door3Image from "/imgs/doors/Door3.png";
-import Door4Image from "/imgs/doors/Door4.png";
+// import { motion, useAnimation } from "framer-motion";
+import { useAnimation } from "framer-motion";
+// import styles from "./style.module.scss";
+// import Door1Image from "/imgs/doors/Door1.png";
+// import Door2Image from "/imgs/doors/Door2.png";
+// import Door3Image from "/imgs/doors/Door3.png";
+// import Door4Image from "/imgs/doors/Door4.png";
 // import Preloader from "../../registration/components/Preloader/Preloader";
 // import assetList from "../../../assetList";
-
+//
 // type Phase = "idle" | "closing" | "waiting" | "opening";
 type Phase = "initial" | "active" | "closing";
 
@@ -111,7 +112,5 @@ export default function DoorTransition({ phase, onClosed, onOpened }: Props) {
 
   if (phase === "initial") return null;
 
-  return (
-    <></>
-  );
+  return <></>;
 }

@@ -112,7 +112,8 @@ export default function App() {
       // await new Promise<void>((resolve) => setTimeout(resolve, 5000000));
       setChecker(true);
     })();
-
+  }, []);
+  useEffect(() => {
     async function changeData(e: KeyboardEvent) {
       if (!checkerRef.current) {
         return;
@@ -123,17 +124,18 @@ export default function App() {
         !isNaN(number) &&
         number >= 1 &&
         number <= listOfStucaa.length &&
-        number !== currIndexRef.current && !isRunning
+        number !== currIndexRef.current &&
+        !isRunning
       ) {
         currIndexRef.current = number;
         setIsRunning(true);
         if (phase !== "initial") {
           setPhase("closing");
-          await new Promise(resolve => setTimeout(resolve, 3000))
+          await new Promise((resolve) => setTimeout(resolve, 3000));
         }
         setCurrIndex(currIndexRef.current);
-        setPhase("active")
-        await new Promise(resolve => setTimeout(resolve, 2500))
+        setPhase("active");
+        await new Promise((resolve) => setTimeout(resolve, 2500));
         setIsRunning(false);
       }
     }
