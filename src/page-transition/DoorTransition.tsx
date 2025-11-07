@@ -1,14 +1,16 @@
 import { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import styles from "./style.module.scss";
-import Door1Image from "/imgs/doors/Door1.png";
-import Door2Image from "/imgs/doors/Door2.png";
-import Door3Image from "/imgs/doors/Door3.png";
-import Door4Image from "/imgs/doors/Door4.png";
+// import { motion, useAnimation } from "framer-motion";
+import { useAnimation } from "framer-motion";
+// import styles from "./style.module.scss";
+// import Door1Image from "/imgs/doors/Door1.png";
+// import Door2Image from "/imgs/doors/Door2.png";
+// import Door3Image from "/imgs/doors/Door3.png";
+// import Door4Image from "/imgs/doors/Door4.png";
 // import Preloader from "../../registration/components/Preloader/Preloader";
 // import assetList from "../../../assetList";
-
-type Phase = "idle" | "closing" | "waiting" | "opening";
+//
+// type Phase = "idle" | "closing" | "waiting" | "opening";
+type Phase = "initial" | "active" | "closing";
 
 interface Props {
   phase: Phase;
@@ -101,45 +103,14 @@ export default function DoorTransition({ phase, onClosed, onOpened }: Props) {
     };
 
     if (phase === "closing") runClosing();
-    if (phase === "opening") runOpening();
+    if (phase === "active") runOpening();
 
     return () => {
       cancelled = true;
     };
   }, [phase, c1, c2, c3, c4, onClosed, onOpened]);
 
-  if (phase === "idle") return null;
+  if (phase === "initial") return null;
 
-  return (
-    <div className={styles.cont} aria-hidden>
-      <motion.img
-        src={Door1Image}
-        alt="Door1"
-        className={`${styles.door} ${styles.door1}`}
-        style={{ "--dx": START.outerLeft } as any}
-        animate={c1}
-      />
-      <motion.img
-        src={Door2Image}
-        alt="Door2"
-        className={`${styles.door} ${styles.door2}`}
-        style={{ "--dx": START.innerLeft } as any}
-        animate={c2}
-      />
-      <motion.img
-        src={Door3Image}
-        alt="Door3"
-        className={`${styles.door} ${styles.door3}`}
-        style={{ "--dx": START.innerRight } as any}
-        animate={c3}
-      />
-      <motion.img
-        src={Door4Image}
-        alt="Door4"
-        className={`${styles.door} ${styles.door4}`}
-        style={{ "--dx": START.outerRight } as any}
-        animate={c4}
-      />
-    </div>
-  );
+  return <></>;
 }

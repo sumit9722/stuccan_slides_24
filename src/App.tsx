@@ -11,7 +11,7 @@ import gensec from "./assets/images/stuccan/Aditya.png";
 import prez from "./assets/images/stuccan/Sajal.png";
 import Preloader from "./preloader/Preloader";
 import oasis from "/oasislogo.png";
-import DoorTransition from "./page-transition/DoorTransition";
+// import DoorTransition from "./page-transition/DoorTransition";
 import ScrollContainer from "./Components/ScrollContainer/ScrollContainer";
 import bg from "./assets/images/bg.png";
 
@@ -20,6 +20,8 @@ export interface Stucca {
   depName: string;
   imgLink: string;
 }
+
+export type Phase = "initial" | "active" | "closing";
 
 export default function App() {
   const listOfStucaa: Stucca[] = [
@@ -65,12 +67,11 @@ export default function App() {
     },
   ];
 
-  const [currIndex, setCurrIndex] = useState(1);
+  const [currIndex, setCurrIndex] = useState(8);
   const [checker, setChecker] = useState(false);
-  const [activeDoor, setActiveDoor] = useState(false);
-  const [phase, setPhase] = useState<
-    "idle" | "closing" | "waiting" | "opening"
-  >("closing");
+  const [isRunning, setIsRunning] = useState(false);
+  // const [activeDoor, setActiveDoor] = useState(false);
+  const [phase, setPhase] = useState<Phase>("initial");
 
   const currIndexRef = useRef(currIndex);
   const checkerRef = useRef(false);
@@ -111,8 +112,9 @@ export default function App() {
       // await new Promise<void>((resolve) => setTimeout(resolve, 5000000));
       setChecker(true);
     })();
-
-    function changeData(e: KeyboardEvent) {
+  }, []);
+  useEffect(() => {
+    async function changeData(e: KeyboardEvent) {
       if (!checkerRef.current) {
         return;
       }
@@ -122,10 +124,19 @@ export default function App() {
         !isNaN(number) &&
         number >= 1 &&
         number <= listOfStucaa.length &&
-        number !== currIndexRef.current
+        number !== currIndexRef.current &&
+        !isRunning
       ) {
         currIndexRef.current = number;
-        setActiveDoor(true);
+        setIsRunning(true);
+        if (phase !== "initial") {
+          setPhase("closing");
+          await new Promise((resolve) => setTimeout(resolve, 3000));
+        }
+        setCurrIndex(currIndexRef.current);
+        setPhase("active");
+        await new Promise((resolve) => setTimeout(resolve, 2500));
+        setIsRunning(false);
       }
     }
 
@@ -134,7 +145,7 @@ export default function App() {
     return () => {
       window.removeEventListener("keydown", changeData);
     };
-  }, []);
+  }, [phase, isRunning]);
 
   return (
     <div className="app" style={{ backgroundImage: `url(${bg})` }}>
@@ -144,11 +155,11 @@ export default function App() {
         </div>
       ) : (
         <>
-          {activeDoor && (
+          {/* {activeDoor && (
             <DoorTransition
               phase={phase}
               onClosed={() => {
-                setPhase("opening");
+                setPhase("active");
                 setCurrIndex(currIndexRef.current);
               }}
               onOpened={() => {
@@ -156,13 +167,14 @@ export default function App() {
                 setActiveDoor(false);
               }}
             />
-          )}
+          )} */}
           <div className="fullpagebody">
             <div className="logo">
               <img src={oasis} alt="osaislogo" className="oasislogo" />
             </div>
             <ScrollContainer
               stucca={listOfStucaa[currIndex - 1]}
+              phase={phase}
               className="scrollCont"
             />
           </div>
