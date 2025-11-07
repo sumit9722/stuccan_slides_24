@@ -13,12 +13,12 @@ import Preloader from "./preloader/Preloader";
 import oasis from "/oasislogo.png";
 import DoorTransition from "./page-transition/DoorTransition";
 import ScrollContainer from "./Components/ScrollContainer/ScrollContainer";
-import bg from "./assets/images/bg.png"
+import bg from "./assets/images/bg.png";
 
 export interface Stucca {
-  name: string,
-  depName: string,
-  imgLink: string
+  name: string;
+  depName: string;
+  imgLink: string;
 }
 
 export default function App() {
@@ -65,7 +65,7 @@ export default function App() {
     },
   ];
 
-  const [currIndex, setCurrIndex] = useState(0);
+  const [currIndex, setCurrIndex] = useState(1);
   const [checker, setChecker] = useState(false);
   const [activeDoor, setActiveDoor] = useState(false);
   const [phase, setPhase] = useState<
@@ -137,7 +137,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app" style={{backgroundImage: `url(${bg})`}}>
+    <div className="app" style={{ backgroundImage: `url(${bg})` }}>
       {!checker ? (
         <div className="preloader-container">
           <Preloader size={64} color="#ffffff" ariaLabel="Loading content" />
@@ -162,8 +162,9 @@ export default function App() {
               <img src={oasis} alt="osaislogo" className="oasislogo" />
             </div>
             <ScrollContainer
-              stucca={listOfStucaa[currIndex]}
-              className="scrollCont" />
+              stucca={listOfStucaa[currIndex - 1]}
+              className="scrollCont"
+            />
           </div>
         </>
       )}

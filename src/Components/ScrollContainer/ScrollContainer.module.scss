@@ -1,22 +1,92 @@
+@font-face {
+  font-family: "Last Shurikan";
+  src: url("/tls.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+:root {
+  --font-last-shurikan: "Last Shurikan", system-ui, -apple-system, "Segoe UI",
+    Roboto, Arial, sans-serif;
+}
+
 .scrollContainer {
-    display: flex;
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  .scroll {
+    background-size: contain;
     height: 100%;
-    align-items: center;
+    z-index: 100;
+    background-repeat: no-repeat;
+    aspect-ratio: 0.168;
+  }
 
-    .scroll {
-        background-size: contain;
+  .scrollPaper {
+    z-index: 10;
+    background-size: cover;
+    flex: 1;
+    height: 75%;
+    border: 3px solid #eeb458;
+    transform: translateX(-1rem) translateY(-5px);
+    .content {
+      padding: 3rem 3rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      position: relative;
+      .somethingTop {
+        position: absolute;
+        top: 20px;
+        right: -65px;
+        transform: translateX(-50%);
+        font-size: 24px;
+        color: black;
+        font-family: var(--font-last-shurikan);
+      }
+      .somethingBottom {
+        position: absolute;
+        bottom: 20px;
+        right: -65px;
+        transform: rotateX(180deg) translateX(-50%);
+        font-size: 24px;
+        color: black;
+        font-family: var(--font-last-shurikan);
+      }
+      .imageContainer {
         height: 100%;
-        z-index: 100;
-        background-repeat: no-repeat;
-        aspect-ratio: 0.168;
-    }
-
-    .scrollPaper {
-        z-index: 10;
-        background-size: cover;
+        img {
+          height: 100%;
+          object-fit: contain;
+          border: 3px solid #eeb458;
+        }
+      }
+      .textContainer {
         flex: 1;
-        height: 75%;
-        border: 2px solid #EEB458;
-        transform: translateX(-1rem) translateY(-5px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        .name {
+          font-size: 60px;
+          color: black;
+          font-family: var(--font-last-shurikan);
+        }
+        .depName {
+          font-size: 50px;
+          color: black;
+          font-family: Quattrocento Sans, system-ui, -apple-system, "Segoe UI",
+            Roboto, Arial, sans-serif;
+          font-weight: 700;
+          text-align: center;
+        }
+      }
     }
+  }
 }
